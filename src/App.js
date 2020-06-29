@@ -24,9 +24,9 @@ function App() {
 
     await api.delete(`repositories/${id}`)
 
-    const newRepositories = repositories.slice(id)
+    const deletedRepo = repositories.slice(id)
 
-    setRepo(newRepositories)
+    setRepo(deletedRepo)
   }
 
   return (
