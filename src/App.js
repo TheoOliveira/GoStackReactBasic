@@ -14,17 +14,17 @@ function App() {
   }, [])
 
   async function handleAddRepository() {
-    // All good
+
     const response = await api.post('repositories', { title: "Novo repositório", url: 'https://github.com/leosilvapessanha/GoStackReactBasic', techs: ["Node.js", "ReactJS", "React Native"] });
 
     setRepo([...repositories, response.data])
   }
 
   async function handleRemoveRepository(id) {
-    // TODO
+
     await api.delete(`repositories/${id}`)
 
-    const newRepositories = repositories.filter(repo => repo.id !== id) // pega tudo menos o id que foi deletado
+    const newRepositories = repositories.slice(id)
 
     setRepo(newRepositories)
   }
@@ -35,12 +35,12 @@ function App() {
         {repositories.map(repository => (
           <li key={repository.id}>
             {repository.title}
-            
+
             <button onClick={() => {
               const ID = repository.id
               handleRemoveRepository(ID)
-              }
-              }>
+            }
+            }>
               Remover
           </button>
           </li>
